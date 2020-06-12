@@ -9,6 +9,10 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+import sys
+sys.path.append('../queue')
+from queue import Queue
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -36,22 +40,23 @@ class BSTNode:
         # current = self
         # if target is current.value:
         #     return True
-        # if target < current.value:
+        # elif target < current.value:
         #     current = self.left
         #     if target is current.value:
         #         return True
         #     else:
-        #         return False
-        # if target > current.value:
+        #         return current.contains(target)
+        # else: # target > current.value
         #     current = self.right
         #     if target is current.value:
         #         return True
         #     else:
-        #         return False       
-        current = self.value
-        if current == target:
+        #         return current.contains(target)    
+
+        # current = self.value
+        if self.value == target:
             return True
-        if target < current:
+        if target < self.value:
             if self.left is None:
                 return False
             else:
@@ -100,30 +105,34 @@ class BSTNode:
 
 
 
-    # # Part 2 -----------------------
+    # Part 2 -----------------------
 
-    # # Print all the values in order from low to high
-    # # Hint:  Use a recursive, depth first traversal
-    # def in_order_print(self, node):
-    #     pass
+    # Print all the values in order from low to high
+    # Hint:  Use a recursive, depth first traversal
+    def in_order_print(self, node):
+        if node.left:
+            node.in_order_print(node.left)
+        print(node.value)
+        if node.right:
+            node.in_order_print(node.right)
 
-    # # Print the value of every node, starting with the given node,
-    # # in an iterative breadth first traversal
-    # def bft_print(self, node):
-    #     pass
+    # Print the value of every node, starting with the given node,
+    # in an iterative breadth first traversal
+    def bft_print(self, node):
+        pass
 
-    # # Print the value of every node, starting with the given node,
-    # # in an iterative depth first traversal
+    # Print the value of every node, starting with the given node,
+    # in an iterative depth first traversal
     # def dft_print(self, node):
     #     pass
 
-    # # Stretch Goals -------------------------
-    # # Note: Research may be required
+    # Stretch Goals -------------------------
+    # Note: Research may be required
 
-    # # Print Pre-order recursive DFT
+    # Print Pre-order recursive DFT
     # def pre_order_dft(self, node):
     #     pass
 
-    # # Print Post-order recursive DFT
+    # Print Post-order recursive DFT
     # def post_order_dft(self, node):
     #     pass
